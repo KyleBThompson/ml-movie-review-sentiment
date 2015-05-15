@@ -11,3 +11,6 @@ C:\Users\Home\documents\visual studio 2013\Projects\MovieReviewSentiment\MovieRe
 C:\Users\Home\documents\visual studio 2013\Projects\MovieReviewSentiment\MovieReviewSentiment\bin\Debug\files\train.tsv
 C:\Users\Home\documents\visual studio 2013\Projects\MovieReviewSentiment\MovieReviewSentiment\bin\Debug\files\test.tsv
 C:\Users\Home\documents\visual studio 2013\Projects\MovieReviewSentiment\MovieReviewSentiment\bin\Debug\files\train_sample.tsv
+C:\src\MovieReviewSentiment\MovieReviewSentiment\bin\Debug\MovieReviewSentiment.exe.config
+C:\src\MovieReviewSentiment\MovieReviewSentiment\obj\Debug\MovieReviewSentiment.exe
+C:\src\MovieReviewSentiment\MovieReviewSentiment\obj\Debug\MovieReviewSentiment.pdb
