@@ -1,0 +1,9 @@
+c:\users\home\documents\visual studio 2013\Projects\MovieReviewSentiment\MovieReviewSentiment.Test\bin\Debug\MovieReviewSentiment.Test.dll
+c:\users\home\documents\visual studio 2013\Projects\MovieReviewSentiment\MovieReviewSentiment.Test\bin\Debug\MovieReviewSentiment.Test.pdb
+c:\users\home\documents\visual studio 2013\Projects\MovieReviewSentiment\MovieReviewSentiment.Test\bin\Debug\nunit.framework.dll
+c:\users\home\documents\visual studio 2013\Projects\MovieReviewSentiment\MovieReviewSentiment.Test\bin\Debug\nunit.framework.xml
+c:\users\home\documents\visual studio 2013\Projects\MovieReviewSentiment\MovieReviewSentiment.Test\obj\Debug\MovieReviewSentiment.Test.csprojResolveAssemblyReference.cache
+c:\users\home\documents\visual studio 2013\Projects\MovieReviewSentiment\MovieReviewSentiment.Test\obj\Debug\MovieReviewSentiment.Test.dll
+c:\users\home\documents\visual studio 2013\Projects\MovieReviewSentiment\MovieReviewSentiment.Test\obj\Debug\MovieReviewSentiment.Test.pdb
+C:\Users\Home\documents\visual studio 2013\Projects\MovieReviewSentiment\MovieReviewSentiment.Test\bin\Debug\MovieReviewSentiment.Classification.dll
+C:\Users\Home\documents\visual studio 2013\Projects\MovieReviewSentiment\MovieReviewSentiment.Test\bin\Debug\MovieReviewSentiment.Classification.pdb
