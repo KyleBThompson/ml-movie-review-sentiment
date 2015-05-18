@@ -14,3 +14,13 @@ C:\Users\Home\documents\visual studio 2013\Projects\MovieReviewSentiment\MovieRe
 C:\src\MovieReviewSentiment\MovieReviewSentiment\bin\Debug\MovieReviewSentiment.exe.config
 C:\src\MovieReviewSentiment\MovieReviewSentiment\obj\Debug\MovieReviewSentiment.exe
 C:\src\MovieReviewSentiment\MovieReviewSentiment\obj\Debug\MovieReviewSentiment.pdb
+C:\src\MovieReviewSentiment\MovieReviewSentiment\bin\Debug\MovieReviewSentiment.exe
+C:\src\MovieReviewSentiment\MovieReviewSentiment\bin\Debug\MovieReviewSentiment.pdb
+C:\src\MovieReviewSentiment\MovieReviewSentiment\bin\Debug\MovieReviewSentiment.Classification.dll
+C:\src\MovieReviewSentiment\MovieReviewSentiment\bin\Debug\MovieReviewSentiment.Classification.pdb
+C:\src\MovieReviewSentiment\MovieReviewSentiment\obj\Debug\MovieReviewSentiment.csprojResolveAssemblyReference.cache
+C:\src\MovieReviewSentiment\MovieReviewSentiment\bin\Debug\files\negative.txt
+C:\src\MovieReviewSentiment\MovieReviewSentiment\bin\Debug\files\positive.txt
+C:\src\MovieReviewSentiment\MovieReviewSentiment\bin\Debug\files\test.tsv
+C:\src\MovieReviewSentiment\MovieReviewSentiment\bin\Debug\files\train.tsv
+C:\src\MovieReviewSentiment\MovieReviewSentiment\bin\Debug\files\train_sample.tsv

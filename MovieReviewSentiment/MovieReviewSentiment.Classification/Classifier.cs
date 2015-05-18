@@ -13,6 +13,12 @@ namespace MovieReviewSentiment.Classification
     private bool _debug;
 
     public Classifier(){
+      GetFeatures = delegate(string s)
+      {
+        var docParser = new DocumentParser();
+        docParser.AddItem(s);
+        return docParser.GetFeatures();
+      };
     }
 
     public Classifier(Func<string, IList<string>> getFeatures)
@@ -112,26 +118,6 @@ namespace MovieReviewSentiment.Classification
       // The total number of times this feature appeared in this
       // label divided by the total number of items in this label
       return FeatureCountForLabel(feature, label)/LabelCount(label);
-    }
-
-    public double WeightedProbability(string feature, string label, double weight, double assumedprob)
-    {
-      // Calculate current probability
-      var basicProb = FeatureProbability(feature, label);
-
-      // Count the number of times this feature has appeared in
-      // all categories
-      var totals = LabelItemCount.Sum(c => FeatureCountForLabel(feature, c.Key));
-
-      // Calculate the weighted average
-      var newProb = ((weight * assumedprob) + (totals * basicProb)) / (weight + totals);
-      return newProb;
-    }
-
-    public double WeightedProbability(string feature, string label)
-    {
-      return FeatureProbability(feature, label);
-      //return WeightedProbability(feature, label, 1.0, 0.5);
     }
 
     public void SetThreshold(string label, double threshold)

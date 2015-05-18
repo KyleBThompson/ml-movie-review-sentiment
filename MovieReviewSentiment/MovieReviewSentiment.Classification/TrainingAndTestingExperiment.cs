@@ -2,16 +2,16 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using MovieReviewSentiment.Classification;
 
-namespace MovieReviewSentiment
+namespace MovieReviewSentiment.Classification
 {
   public class TrainingAndTestingExperiment
   {
     private readonly IList<Document> _documents = new List<Document>();
     private readonly NaiveBayes _cl;
+    private readonly string _inputFilesPath;
 
-    public TrainingAndTestingExperiment()
+    public TrainingAndTestingExperiment(string inputFilePath = null)
     {
       Func<string, IList<string>> getFeatures = delegate(string s)
       {
@@ -19,16 +19,27 @@ namespace MovieReviewSentiment
         docParser.AddItem(s);
         return docParser.GetFeatures();
       };
-
+      if (inputFilePath != null)
+      {
+        _inputFilesPath = inputFilePath + "/";
+      }
       _cl = new NaiveBayes(getFeatures);
     }
 
-    public double TestForAccuracy()
+    public AccuracyResult TestForAccuracy()
     {
       LoadDocuments();
       LoadDocumentsFromKagglePositiveNegativeOnly();
+      var recs = _documents.Count;
       var labels = GetLabels();
-      return CalculateAccuracy(labels);
+      var accuracy = CalculateAccuracy(labels);
+      var result = new AccuracyResult
+      {
+        Accuracy = accuracy,
+        TrainingDatasetSize = recs,
+        Classifier = _cl
+      };
+      return result;
     }
 
     public double TestForAccuracyUsingKaggleTestData()
@@ -108,7 +119,7 @@ namespace MovieReviewSentiment
 
     private void LoadDocuments()
     {
-      using (var reader = new StreamReader("files/positive.txt"))
+      using (var reader = new StreamReader(_inputFilesPath + "files/positive.txt"))
       {
         string line;
         while ((line = reader.ReadLine()) != null)
@@ -116,7 +127,7 @@ namespace MovieReviewSentiment
           _documents.Add(new Document {Label = "positive", Item = line});
         }
       }
-      using (var reader = new StreamReader("files/negative.txt"))
+      using (var reader = new StreamReader(_inputFilesPath + "files/negative.txt"))
       {
         string line;
         while ((line = reader.ReadLine()) != null)
@@ -134,7 +145,7 @@ namespace MovieReviewSentiment
 
     private void LoadDocumentsFromKaggle()
     {
-      using (var reader = new StreamReader("files/train.tsv"))
+      using (var reader = new StreamReader(_inputFilesPath + "files/train.tsv"))
       {
         reader.ReadLine(); // skip header
         string line;
@@ -150,7 +161,7 @@ namespace MovieReviewSentiment
 
     private void LoadDocumentsFromKagglePositiveNegativeOnly()
     {
-      using (var reader = new StreamReader("files/train.tsv"))
+      using (var reader = new StreamReader(_inputFilesPath + "files/train.tsv"))
       {
         reader.ReadLine(); // skip header
         string line;
@@ -177,6 +188,7 @@ namespace MovieReviewSentiment
               sentiment = "positive";
               break;
           }
+
           if (sentiment == "skip") continue;
           _documents.Add(new Document { Label = sentiment, Item = phrase });
         }
@@ -190,5 +202,11 @@ namespace MovieReviewSentiment
     }
   }
 
+  public class AccuracyResult
+  {
+    public double Accuracy { get; set; }
+    public int TrainingDatasetSize { get; set; }
+    public Classifier Classifier { get; set; }
+  }
 
 }

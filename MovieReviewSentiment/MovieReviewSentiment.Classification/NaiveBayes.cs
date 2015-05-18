@@ -1,11 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 
 namespace MovieReviewSentiment.Classification
 {
   public class NaiveBayes : Classifier
   {
+    public NaiveBayes()
+    {
+    }
     public NaiveBayes(Func<string, IList<string>> getFeatures) : base(getFeatures)
     {
     }
@@ -18,7 +22,7 @@ namespace MovieReviewSentiment.Classification
       double p = 1;
       foreach (var feature in features)
       {
-        var wp = WeightedProbability(feature, label);
+        var wp = FeatureProbability(feature, label);
         Console.WriteLine("{0} {1} {2}", feature, label, wp);
         p*= wp;
         Console.WriteLine("running prob for {0} is {1}", label, p);
@@ -29,6 +33,10 @@ namespace MovieReviewSentiment.Classification
 
     public Classification Classify(string text)
     {
+      if (LabelItemCount.Count == 0)
+      {
+        throw new ConstraintException("Classifier has not been trained.");
+      }
       var scores = Probability(text);
       double[] bestScore = { 0.0 };
       var bestLabel = string.Empty;

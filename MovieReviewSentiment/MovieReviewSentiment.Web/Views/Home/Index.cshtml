@@ -1,0 +1,26 @@
+﻿@{
+    ViewBag.Title = "Movie Review Sentiment";
+}
+
+<header>
+    <h1>@ViewBag.Title</h1>
+</header>
+
+<div id="main-content">
+  
+  <div></div>
+  <textarea id="review" rows="5" cols="50"></textarea>
+  <br/>
+  <button style="margin-top:.5em;" id="guess">Guess</button>
+  <button style="margin-top:.5em;" id="train">Train</button>
+  <br/>
+  <div style="display:none;padding:.5em 0 .5em 0;" id="result">
+    <div style="padding: .5em 0 0 0;font-weight: bold;font-size: xx-large;" id="sentiment"></div>
+    <div  id="confidence"></div>
+  </div>
+  <div style="padding-top:1em" id="training-result"></div>
+</div>
+
+  @section scripts {
+      @Scripts.Render("~/bundles/moviesentiment")
+  }

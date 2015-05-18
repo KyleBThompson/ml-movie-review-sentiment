@@ -7,3 +7,17 @@ c:\users\home\documents\visual studio 2013\Projects\MovieReviewSentiment\MovieRe
 c:\users\home\documents\visual studio 2013\Projects\MovieReviewSentiment\MovieReviewSentiment.Test\obj\Debug\MovieReviewSentiment.Test.pdb
 C:\Users\Home\documents\visual studio 2013\Projects\MovieReviewSentiment\MovieReviewSentiment.Test\bin\Debug\MovieReviewSentiment.Classification.dll
 C:\Users\Home\documents\visual studio 2013\Projects\MovieReviewSentiment\MovieReviewSentiment.Test\bin\Debug\MovieReviewSentiment.Classification.pdb
+C:\src\MovieReviewSentiment\MovieReviewSentiment.Test\bin\Debug\MovieReviewSentiment.Test.dll
+C:\src\MovieReviewSentiment\MovieReviewSentiment.Test\bin\Debug\MovieReviewSentiment.Test.pdb
+C:\src\MovieReviewSentiment\MovieReviewSentiment.Test\bin\Debug\MovieReviewSentiment.Classification.dll
+C:\src\MovieReviewSentiment\MovieReviewSentiment.Test\bin\Debug\nunit.framework.dll
+C:\src\MovieReviewSentiment\MovieReviewSentiment.Test\bin\Debug\MovieReviewSentiment.Classification.pdb
+C:\src\MovieReviewSentiment\MovieReviewSentiment.Test\bin\Debug\nunit.framework.xml
+C:\src\MovieReviewSentiment\MovieReviewSentiment.Test\obj\Debug\MovieReviewSentiment.Test.csprojResolveAssemblyReference.cache
+C:\src\MovieReviewSentiment\MovieReviewSentiment.Test\obj\Debug\MovieReviewSentiment.Test.dll
+C:\src\MovieReviewSentiment\MovieReviewSentiment.Test\obj\Debug\MovieReviewSentiment.Test.pdb
+C:\src\MovieReviewSentiment\MovieReviewSentiment.Test\bin\Debug\files\negative.txt
+C:\src\MovieReviewSentiment\MovieReviewSentiment.Test\bin\Debug\files\positive.txt
+C:\src\MovieReviewSentiment\MovieReviewSentiment.Test\bin\Debug\files\test.tsv
+C:\src\MovieReviewSentiment\MovieReviewSentiment.Test\bin\Debug\files\train.tsv
+C:\src\MovieReviewSentiment\MovieReviewSentiment.Test\bin\Debug\files\train_sample.tsv
