@@ -35,12 +35,12 @@ namespace MovieReviewSentiment
       var cl = new NaiveBayes(getFeatures);
 
       // train with smaller dataset (positive and negative only), use testReviews as input
-      // Loader.TrainWithTextFiles(cl);
-      // Loader.TrainWithKaggleDataPositiveNegativeOnly(cl);
+      Loader.TrainWithTextFiles(cl);
+      //  Loader.TrainWithKaggleDataPositiveNegativeOnly(cl);
       // Or
       // train with kaggle data (big dataset). should not be used with two training methods above
       // labels: positive, somewhat positive, neutral, somewhat negative and negative
-       Loader.TrainWithKaggleTextFiles(cl); 
+      // Loader.TrainWithKaggleTextFiles(cl); 
 
       // trans and classifies kaggles input data and writes results to file (bin/debug/files/submission.tsv
       //ClassifyAndTestWithKaggleFiles(cl, getFeatures); 

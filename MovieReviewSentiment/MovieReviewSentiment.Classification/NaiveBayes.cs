@@ -16,56 +16,48 @@ namespace MovieReviewSentiment.Classification
       {
         throw new ConstraintException("Classifier has not been trained.");
       }
-      var scores = Probability(text);
-      double[] bestScore = { 0.0 };
-      var bestLabel = string.Empty;
-
-      foreach (var label in scores.Where(label => label.Value > bestScore[0]))
-      {
-        bestScore[0] = label.Value;
-        bestLabel = label.Key;
-      }
+      var scores = CalculateProbabilityForEachLabel(text);
+      var bestScore = scores.Aggregate((l, r) => l.Value > r.Value ? l : r);
 
       return new Classification
       {
-        Label = bestLabel,
-        Probability = bestScore[0]
+        Label = bestScore.Key,
+        Probability = bestScore.Value
       };
     }
 
-    public Dictionary<string, double> Probability(string item)
+    public Dictionary<string, double> CalculateProbabilityForEachLabel(string item)
     {
       var labels = LabelItemCount.Select(x => x.Key).ToList();
       var words = GetFeatures(item);
       var scores = new Dictionary<string, double>();
 
-      foreach (var label in labels)
-      {
-        CalculateDocumentProbabilityForLabel(words, label, scores);
-      }
+      labels.ForEach(x => scores[x] = CalculateDocumentProbabilityForLabel(words, x));
 
       return scores;
     }
 
-    private void CalculateDocumentProbabilityForLabel(IEnumerable<string> words, string label, IDictionary<string, double> scores)
+    private double CalculateDocumentProbabilityForLabel(IEnumerable<string> words, string label)
     {
       var logSum = 0.0;
       foreach (var word in words)
       {
-        var wordTotal = FeatureCount(word);
-        if (wordTotal == 0)
-        {
-          continue;
-        }
-        var probGivenWordFitsLabel = CalculateProbabilityThatGivenWordFitsLabel(word, label, wordTotal);
+        var nbrTimesWordAppearsInADocument = FeatureCount(word);
+        if (nbrTimesWordAppearsInADocument == 0) { continue; }
 
+        var probGivenWordFitsLabel = CalculateProbabilityThatGivenWordFitsLabel(word, label);
+
+        probGivenWordFitsLabel = AccountForRareWords(probGivenWordFitsLabel, nbrTimesWordAppearsInADocument);
+
+        // combine probabilities, prevent floating point loss of precision
         logSum += (Math.Log(1 - probGivenWordFitsLabel) - Math.Log(probGivenWordFitsLabel));
+
         Log(string.Format("{0}icity of {1}: {2}", label, word, probGivenWordFitsLabel));
       }
-      scores[label] = 1/(1 + Math.Exp(logSum));
+      return 1 / (1 + Math.Exp(logSum));
     }
 
-    private double CalculateProbabilityThatGivenWordFitsLabel(string word, string label, int wordTotal)
+    private double CalculateProbabilityThatGivenWordFitsLabel(string word, string label)
     {
       // Given a specific label, the probability this word fits
       var wordCountForLabel = FeatureCountForLabel(word, label);
@@ -79,11 +71,19 @@ namespace MovieReviewSentiment.Classification
       // Bayes magic: Given this word, what is probability it should be classified with this label
       var probGivenWordFitsLabel = wordProbForLabel/(wordProbForLabel + wordProbOtherLabels);
 
-      // account for rare words
-      probGivenWordFitsLabel = ((3*0.5) + (wordTotal*probGivenWordFitsLabel))/(3 + wordTotal);
-
       return probGivenWordFitsLabel;
     }
+
+    private static double AccountForRareWords(double probGivenWordFitsLabel, int nbrTimesWordAppearsInADocument)
+    {
+      const int weight = 10;
+      const double valueToAdjustTowards = 0.5;
+      probGivenWordFitsLabel = ((weight * valueToAdjustTowards) 
+                               + (nbrTimesWordAppearsInADocument * probGivenWordFitsLabel))
+                               / (weight + nbrTimesWordAppearsInADocument);
+      return probGivenWordFitsLabel;
+    }
+
   }
 
   public class Classification

@@ -92,11 +92,11 @@ namespace MovieReviewSentiment.Classification
         for (var i = split; i < length; i++)
         {
           var result = _cl.Classify(documents[(int) i].Item);
-          if (result.Probability < 0.75)
-          {
-            skipped++;
-          }
-          else if (result.Label == label)
+          //if (result.Probability < 0.75)
+          //{
+          //  skipped++;
+          //}
+          if (result.Label == label)
           {
             correct++;
           }

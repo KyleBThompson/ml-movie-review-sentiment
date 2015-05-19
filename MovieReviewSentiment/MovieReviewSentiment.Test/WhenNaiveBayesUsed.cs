@@ -43,35 +43,13 @@ namespace MovieReviewSentiment.Test
     }
 
     [Test]
-    public void Blah()
+    public void Log_subtraction_should_equal_float_division()
     {
-      _cl.Train("spiderman", "positive");
-      _cl.Train("spiderman", "positive");
-      //      _cl.Train("love", "positive");
-      _cl.Train("terrible", "negative");
-      //_cl.Train("spiderman rocks", "positive");
-      //_cl.Train("love story", "positive");
-      //_cl.Train("terrible movie", "negative");
-      var classification = _cl.Classify("spiderman");
-      Console.WriteLine(classification.Label);
-      Console.WriteLine(classification.Probability);
-
-      Console.WriteLine(Environment.NewLine);
-
+      const double probability = .80;
+      const double inverseProbability = 1 - probability;
+      const double quotient1 = inverseProbability / probability;
+      var quotient2 = Math.Exp(Math.Log(inverseProbability) - Math.Log(probability));
+      Assert.AreEqual(quotient1, quotient2);
     }
-
-    [Test]
-    public void Blah2()
-    {
-      _cl.Train("spiderman rocks", "positive");
-      _cl.Train("spiderman rocks", "positive");
-      _cl.Train("terrible", "negative");
-
-      _cl.SetThreshold("positive", 10.0);
-      var classification = _cl.Classify("rocks");
-      Console.WriteLine(classification.Label);
-      Console.WriteLine(classification.Probability);
-    }
-
   }
 }
