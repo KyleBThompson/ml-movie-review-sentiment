@@ -16,8 +16,3 @@ C:\src\MovieReviewSentiment\MovieReviewSentiment.Test\bin\Debug\nunit.framework.
 C:\src\MovieReviewSentiment\MovieReviewSentiment.Test\obj\Debug\MovieReviewSentiment.Test.csprojResolveAssemblyReference.cache
 C:\src\MovieReviewSentiment\MovieReviewSentiment.Test\obj\Debug\MovieReviewSentiment.Test.dll
 C:\src\MovieReviewSentiment\MovieReviewSentiment.Test\obj\Debug\MovieReviewSentiment.Test.pdb
-C:\src\MovieReviewSentiment\MovieReviewSentiment.Test\bin\Debug\files\negative.txt
-C:\src\MovieReviewSentiment\MovieReviewSentiment.Test\bin\Debug\files\positive.txt
-C:\src\MovieReviewSentiment\MovieReviewSentiment.Test\bin\Debug\files\test.tsv
-C:\src\MovieReviewSentiment\MovieReviewSentiment.Test\bin\Debug\files\train.tsv
-C:\src\MovieReviewSentiment\MovieReviewSentiment.Test\bin\Debug\files\train_sample.tsv

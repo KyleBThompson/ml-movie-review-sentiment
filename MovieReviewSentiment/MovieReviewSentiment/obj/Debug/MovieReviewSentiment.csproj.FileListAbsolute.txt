@@ -24,3 +24,5 @@ C:\src\MovieReviewSentiment\MovieReviewSentiment\bin\Debug\files\positive.txt
 C:\src\MovieReviewSentiment\MovieReviewSentiment\bin\Debug\files\test.tsv
 C:\src\MovieReviewSentiment\MovieReviewSentiment\bin\Debug\files\train.tsv
 C:\src\MovieReviewSentiment\MovieReviewSentiment\bin\Debug\files\train_sample.tsv
+C:\src\MovieReviewSentiment\MovieReviewSentiment\bin\Debug\MovieReviewSentiment.Data.dll
+C:\src\MovieReviewSentiment\MovieReviewSentiment\bin\Debug\MovieReviewSentiment.Data.pdb

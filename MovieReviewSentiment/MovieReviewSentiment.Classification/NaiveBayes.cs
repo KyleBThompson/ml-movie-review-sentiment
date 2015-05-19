@@ -7,29 +7,8 @@ namespace MovieReviewSentiment.Classification
 {
   public class NaiveBayes : Classifier
   {
-    public NaiveBayes()
-    {
-    }
-    public NaiveBayes(Func<string, IList<string>> getFeatures) : base(getFeatures)
-    {
-    }
-
-    public double DocumentProbability(string item, string label)
-     {
-      var features = GetFeatures(item);
-      
-      // Multiply the probabilities of all the features together
-      double p = 1;
-      foreach (var feature in features)
-      {
-        var wp = FeatureProbability(feature, label);
-        Console.WriteLine("{0} {1} {2}", feature, label, wp);
-        p*= wp;
-        Console.WriteLine("running prob for {0} is {1}", label, p);
-      }
-      Console.WriteLine("doc prob for {0} is {1}", label, p);
-      return p;
-    }
+    public NaiveBayes(){}
+    public NaiveBayes(Func<string, IList<string>> getFeatures) : base(getFeatures){}
 
     public Classification Classify(string text)
     {
@@ -40,6 +19,7 @@ namespace MovieReviewSentiment.Classification
       var scores = Probability(text);
       double[] bestScore = { 0.0 };
       var bestLabel = string.Empty;
+
       foreach (var label in scores.Where(label => label.Value > bestScore[0]))
       {
         bestScore[0] = label.Value;
@@ -61,43 +41,49 @@ namespace MovieReviewSentiment.Classification
 
       foreach (var label in labels)
       {
-        var logSum = 0.0;
-        foreach (var word in words)
-        {
-          var wordTotal = FeatureCount(word);
-          if (wordTotal == 0)
-          {
-            continue;
-          }
-          var wordCountForLabel = FeatureCountForLabel(word, label);
-          var docCountForLabel = DocumentCount(label);
-          var wordProbForLabel = wordCountForLabel/docCountForLabel;
-          var wordCountForOtherLabel = InverseFeatureCount(word, label);
-          var docCountForOtherLabel = InverseDocumentCount(label);
-          var wordProbOtherLabel = wordCountForOtherLabel/docCountForOtherLabel;
-
-          var probGivenWorkFitLabel = wordProbForLabel/(wordProbForLabel + wordProbOtherLabel);
-
-          probGivenWorkFitLabel = ((3 * 0.5) + (wordTotal * probGivenWorkFitLabel)) / (3 + wordTotal);
-
-          if (probGivenWorkFitLabel.Equals(0.0))
-          {
-            probGivenWorkFitLabel = 0.00001;
-          }
-          else if (probGivenWorkFitLabel.Equals(1.0))
-          {
-            probGivenWorkFitLabel = 0.99999;
-          }
-          
-          logSum += (Math.Log(1 - probGivenWorkFitLabel) - Math.Log(probGivenWorkFitLabel));
-          Log(string.Format("{0}icity of {1}: {2}",label,word, probGivenWorkFitLabel));
-        }
-        scores[label] = 1/(1 + Math.Exp(logSum));
+        CalculateDocumentProbabilityForLabel(words, label, scores);
       }
 
       return scores;
     }
 
+    private void CalculateDocumentProbabilityForLabel(IEnumerable<string> words, string label, IDictionary<string, double> scores)
+    {
+      var logSum = 0.0;
+      foreach (var word in words)
+      {
+        var wordTotal = FeatureCount(word);
+        if (wordTotal == 0)
+        {
+          continue;
+        }
+        var probGivenWordFitsLabel = CalculateProbabilityThatGivenWordFitsLabel(word, label, wordTotal);
+
+        logSum += (Math.Log(1 - probGivenWordFitsLabel) - Math.Log(probGivenWordFitsLabel));
+        Log(string.Format("{0}icity of {1}: {2}", label, word, probGivenWordFitsLabel));
+      }
+      scores[label] = 1/(1 + Math.Exp(logSum));
+    }
+
+    private double CalculateProbabilityThatGivenWordFitsLabel(string word, string label, int wordTotal)
+    {
+      // Given a specific label, the probability this word fits
+      var wordCountForLabel = FeatureCountForLabel(word, label);
+      var docCountForLabel = DocumentCount(label);
+      var wordProbForLabel = wordCountForLabel/docCountForLabel;
+      // Now do inverse for probability that ehword fits some other label
+      var wordCountForOtherLabels = InverseFeatureCount(word, label);
+      var docCountForOtherLabels = InverseDocumentCount(label);
+      var wordProbOtherLabels = wordCountForOtherLabels/docCountForOtherLabels;
+
+      // Bayes magic: Given this word, what is probability it should be classified with this label
+      var probGivenWordFitsLabel = wordProbForLabel/(wordProbForLabel + wordProbOtherLabels);
+
+      // account for rare words
+      probGivenWordFitsLabel = ((3*0.5) + (wordTotal*probGivenWordFitsLabel))/(3 + wordTotal);
+
+      return probGivenWordFitsLabel;
+    }
   }
 
   public class Classification

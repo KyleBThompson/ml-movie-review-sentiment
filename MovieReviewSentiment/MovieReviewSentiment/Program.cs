@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Linq;
 using MovieReviewSentiment.Classification;
 
 namespace MovieReviewSentiment
@@ -10,9 +8,10 @@ namespace MovieReviewSentiment
   {
     static void Main(string[] args)
     {
-      Console.WriteLine(new TrainingAndTestingExperiment().TestForAccuracy().Accuracy);
-   //   Console.WriteLine(new TrainingAndTestingExperiment().TestForAccuracyUsingKaggleTestData());
+      var accuracyTest = new TrainingAndTestingExperiment().TestForAccuracy();
+      Console.WriteLine(accuracyTest.Accuracy);
       Console.WriteLine("Accuracy test complete -----------------------------------------------");
+      Console.WriteLine("Dataset size: " + accuracyTest.TrainingDatasetSize);
       Console.WriteLine("");
      // Console.ReadLine();
      // return;
@@ -36,13 +35,24 @@ namespace MovieReviewSentiment
       var cl = new NaiveBayes(getFeatures);
 
       // train with smaller dataset (positive and negative only), use testReviews as input
-      Loader.ClassifyWithTestFiles(cl, testReviews);
-      
-      // train with kaggle data (big dataset), use testReviews as input
-     // ClassifyWithKaggleFiles(cl, getFeatures, testReviews); 
+      // Loader.TrainWithTextFiles(cl);
+      // Loader.TrainWithKaggleDataPositiveNegativeOnly(cl);
+      // Or
+      // train with kaggle data (big dataset). should not be used with two training methods above
+      // labels: positive, somewhat positive, neutral, somewhat negative and negative
+       Loader.TrainWithKaggleTextFiles(cl); 
 
       // trans and classifies kaggles input data and writes results to file (bin/debug/files/submission.tsv
       //ClassifyAndTestWithKaggleFiles(cl, getFeatures); 
+
+      foreach (var testReview in testReviews)
+      {
+        Console.WriteLine();
+        var result = cl.Classify(testReview.Value);
+        Console.WriteLine(testReview.Value);
+        var sentiment = Loader.ConvertKaggleSentiment(result.Label);
+        Console.WriteLine("{0} {1}", sentiment, Math.Round((result.Probability * 100), 2));
+      }
 
       while (true)
       {
