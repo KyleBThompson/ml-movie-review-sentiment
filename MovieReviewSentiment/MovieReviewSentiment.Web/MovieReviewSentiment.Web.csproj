@@ -311,10 +311,6 @@
       <Project>{ba2a10e2-ab65-4947-8f1e-8a43440525f2}</Project>
       <Name>MovieReviewSentiment.Classification</Name>
     </ProjectReference>
-    <ProjectReference Include="..\MovieReviewSentiment.Data\MovieReviewSentiment.Data.csproj">
-      <Project>{94198a16-3fbf-446b-99b8-ba4a41cd8ae5}</Project>
-      <Name>MovieReviewSentiment.Data</Name>
-    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
