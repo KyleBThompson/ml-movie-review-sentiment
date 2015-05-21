@@ -49,6 +49,7 @@ namespace MovieReviewSentiment.Test
       const double inverseProbability = 1 - probability;
       const double quotient1 = inverseProbability / probability;
       var quotient2 = Math.Exp(Math.Log(inverseProbability) - Math.Log(probability));
+
       Assert.AreEqual(quotient1, quotient2);
     }
   }

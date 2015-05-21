@@ -68,7 +68,7 @@ namespace MovieReviewSentiment.Classification
       var docCountForOtherLabels = InverseDocumentCount(label);
       var wordProbOtherLabels = wordCountForOtherLabels/docCountForOtherLabels;
 
-      // Bayes magic: Given this word, what is probability it should be classified with this label
+      // Given this word, what is probability it should be classified with this label
       var probGivenWordFitsLabel = wordProbForLabel/(wordProbForLabel + wordProbOtherLabels);
 
       return probGivenWordFitsLabel;
