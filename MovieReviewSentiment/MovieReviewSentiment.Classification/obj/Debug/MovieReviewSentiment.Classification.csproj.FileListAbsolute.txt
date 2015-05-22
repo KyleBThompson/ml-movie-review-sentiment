@@ -8,10 +8,3 @@ C:\src\MovieReviewSentiment\MovieReviewSentiment.Classification\bin\Debug\MovieR
 C:\src\MovieReviewSentiment\MovieReviewSentiment.Classification\obj\Debug\MovieReviewSentiment.Classification.csprojResolveAssemblyReference.cache
 C:\src\MovieReviewSentiment\MovieReviewSentiment.Classification\obj\Debug\MovieReviewSentiment.Classification.dll
 C:\src\MovieReviewSentiment\MovieReviewSentiment.Classification\obj\Debug\MovieReviewSentiment.Classification.pdb
-C:\src\MovieReviewSentiment\MovieReviewSentiment.Classification\bin\Debug\MovieReviewSentiment.Data.dll
-C:\src\MovieReviewSentiment\MovieReviewSentiment.Classification\bin\Debug\MovieReviewSentiment.Data.pdb
-C:\src\MovieReviewSentiment\MovieReviewSentiment.Classification\bin\Debug\files\negative.txt
-C:\src\MovieReviewSentiment\MovieReviewSentiment.Classification\bin\Debug\files\positive.txt
-C:\src\MovieReviewSentiment\MovieReviewSentiment.Classification\bin\Debug\files\test.tsv
-C:\src\MovieReviewSentiment\MovieReviewSentiment.Classification\bin\Debug\files\train.tsv
-C:\src\MovieReviewSentiment\MovieReviewSentiment.Classification\bin\Debug\files\train_sample.tsv

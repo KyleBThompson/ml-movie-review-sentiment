@@ -76,7 +76,7 @@ namespace MovieReviewSentiment.Classification
 
     private static double AccountForRareWords(double probGivenWordFitsLabel, int nbrTimesWordAppearsInADocument)
     {
-      const int weight = 10;
+      const int weight = 1;
       const double valueToAdjustTowards = 0.5;
       probGivenWordFitsLabel = ((weight * valueToAdjustTowards) 
                                + (nbrTimesWordAppearsInADocument * probGivenWordFitsLabel))

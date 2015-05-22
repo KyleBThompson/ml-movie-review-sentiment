@@ -14,12 +14,21 @@ $('#guess').click(function () {
         $("#training-result").empty().append(data.label);
       } else {
         $("#sentiment").empty().append(data.label);
-        $("#confidence").append("Confidence Level: " + data.confidence + "%");
+        $("#confidence").empty().append("Confidence Level: " + data.confidence + "%");
         $("#result").show();
       }
     }
   });
+});
 
+
+$('#test-reviews').click(function () {
+  if ($(this).val().length > 0) {
+    $('#review').val($(this).val());
+    $("#sentiment").empty();
+    $("#confidence").empty();
+    $("#result").hide();
+  }
 });
 
 $('#train').click(function () {
@@ -30,9 +39,11 @@ $('#train').click(function () {
     url: "api/moviereview/train",
     contentType: "application/json",
     success: function (data) {
+      $("#sentiment").empty();
+      $("#confidence").empty();
+      $("#result").hide();
       $("#training-result").empty().append("Classifier has been trained with " + Number(data.trainingDatasetSize).toLocaleString('en') + " records.");
       $("#training-result").append("<br/>Accuracy from self test = " + data.accuracy + "%");
     }
   });
-
 });
