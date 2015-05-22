@@ -22,7 +22,7 @@ $('#guess').click(function () {
 });
 
 
-$('#test-reviews').click(function () {
+$('#test-reviews').change(function () {
   if ($(this).val().length > 0) {
     $('#review').val($(this).val());
     $("#sentiment").empty();
