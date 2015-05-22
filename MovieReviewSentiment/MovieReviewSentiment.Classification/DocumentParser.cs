@@ -65,6 +65,7 @@ namespace MovieReviewSentiment.Classification
       return tokens;
     }
 
+    // Reduce word to base, or root: "stemmer", "stemming", "stemmed" as based on "stem
     private string StemWord(string word)
     {
       if (_suppressStemming)
