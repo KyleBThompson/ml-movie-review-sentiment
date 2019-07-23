@@ -1,6 +1,6 @@
 ﻿
 
-Folling are reviews taken from Rotten Tomatoes - they are more recent than training data:
+Following are reviews taken from Rotten Tomatoes - they are more recent than training data:
 
 On par with its predecessor, Joss Whedon proves that he's more then capable of handling this franchise's biggest film, even if he's far from perfect at it.
 
